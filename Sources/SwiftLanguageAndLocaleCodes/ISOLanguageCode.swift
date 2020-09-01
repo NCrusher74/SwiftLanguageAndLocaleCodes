@@ -5,7 +5,7 @@
 
 public enum ISO6392Code: String, CaseIterable {
     /// Initializes an ISO-639-2 code from the UInt16 shorthand for the code used in Apple Quicktime metadata
-    init?(fromUInt16: UInt16) {
+    public init?(fromUInt16: UInt16) {
         if let code = ISO6392Code.uInt16ToCodeMapping[fromUInt16] {
             self = code
         } else {
@@ -23,7 +23,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from the ISO-recognized language name
-    init?(isoName: String) {
+    public init?(isoName: String) {
         if let code = ISO6392Code.isoNameToCodeMapping[isoName] {
             self = code
         } else {
@@ -39,9 +39,8 @@ public enum ISO6392Code: String, CaseIterable {
         return mapping
     }()
     
-    
     /// Initializes an ISO-639-2 code from the local or native name for the language
-    init?(nativeName: String) {
+    public init?(nativeName: String) {
         if let code = ISO6392Code.nativeNameToCodeMapping[nativeName] {
             self = code
         } else {
@@ -58,7 +57,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from a Quicktime language code
-    init?(quicktimeCode: Int) {
+    public init?(quicktimeCode: Int) {
         if let code = ISO6392Code.quicktimeCodeMapping[quicktimeCode] {
             self = code
         } else {
@@ -75,7 +74,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
         
     /// Initializes an ISO-639-2 code from an ISO-639-1 code
-    init?(iso6391Code: String) {
+    public init?(iso6391Code: String) {
         if let code = ISO6392Code.iso6391ToCodeMapping[iso6391Code] {
             self = code
         } else {
@@ -1912,7 +1911,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     // MARK: ISO Names
-    var isoName: String {
+    public var isoName: String {
         switch self {
             /// Afar
             case .aar: return "Afar"
@@ -2938,7 +2937,7 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
     
-    var iso639_1_Code: String {
+    public var iso639_1_Code: String {
         switch self {
             case .aar: return "aa"
             case .abk: return "ab"
@@ -3126,7 +3125,7 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
     
-    var quickTimeLanguageCode: Int? {
+    public var quickTimeLanguageCode: Int? {
         switch self {
             case .eng: return 0
             case .fra: return 1
@@ -3509,7 +3508,7 @@ extension Character {
     }
 }
 
-public extension Sequence where Element == Character {
+extension Sequence where Element == Character {
     var uInt8Array: [UInt8] {
         return String(self).utf8.map{UInt8($0)}
     }

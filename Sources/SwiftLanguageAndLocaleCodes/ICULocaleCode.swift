@@ -8,7 +8,7 @@ import Foundation
 
 public enum ICULocaleCode: String, CaseIterable {
     /// Initializes an ICU Locale Code from its native name
-    init?(nativeName: String) {
+    public init?(nativeName: String) {
         if let code = ICULocaleCode.nativeNameToCodeMapping?[nativeName] {
             self = code
         } else {
@@ -1472,7 +1472,7 @@ public enum ICULocaleCode: String, CaseIterable {
     /// Zulu (South Africa) - isiZulu (iNingizimu Afrika)
     case zuluSouthAfrica = "zu_ZA"
     
-    var nativeName: String? {
+    public var nativeName: String? {
         switch self {
             /// Afrikaans - Afrikaans
             case .afrikaans: return "Afrikaans"

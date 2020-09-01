@@ -1,5 +1,5 @@
 import XCTest
-@testable import LanguageAndLocaleCodes
+@testable import SwiftLanguageAndLocaleCodes
 
 final class SwiftLanguageAndLocaleCodesTests: XCTestCase {
 //    func testExample() {
