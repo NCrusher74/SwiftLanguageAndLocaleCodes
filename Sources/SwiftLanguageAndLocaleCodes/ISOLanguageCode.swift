@@ -3465,7 +3465,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     /// Converts the 3-character language code string to a UInt16 shorthand value used in Quicktime metadata as specified here: https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap4/qtff4.html#//apple_ref/doc/uid/TP40000939-CH206-27005
-    func getInt16Code() -> Int16 {
+    public func getInt16Code() -> Int16 {
         let isoCodeString = self.rawValue
         
         let intSubtract: Int16 = 0x60
