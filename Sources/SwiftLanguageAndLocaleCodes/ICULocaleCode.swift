@@ -27,6 +27,7 @@ public enum ICULocaleCode: String, CaseIterable {
         return mapping
     }()
         
+    case unspecified
     /// Afrikaans - Afrikaans
     case afrikaans = "af"
     /// Afrikaans (Namibia) - Afrikaans (Namibië)
@@ -1474,6 +1475,7 @@ public enum ICULocaleCode: String, CaseIterable {
     
     public var nativeName: String? {
         switch self {
+            case .unspecified: return nil
             /// Afrikaans - Afrikaans
             case .afrikaans: return "Afrikaans"
             /// Afrikaans (Namibia) - Afrikaans (Namibië)
