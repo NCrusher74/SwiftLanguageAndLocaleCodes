@@ -3,9 +3,9 @@
  Copyright ©2020 Nolaine Crusher. All rights reserved.
  */
 
-public enum ISO6392Code: String, CaseIterable {
+enum ISO6392Code: String, CaseIterable {
     /// Initializes an ISO-639-2 code from the UInt16 shorthand for the code used in Apple Quicktime metadata
-    public init?(fromInt16: Int16) {
+    init?(fromInt16: Int16) {
         if let code = ISO6392Code.uInt16ToCodeMapping[fromInt16] {
             self = code
         } else {
@@ -23,7 +23,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from the ISO-recognized language name
-    public init?(isoName: String) {
+    init?(isoName: String) {
         if let code = ISO6392Code.isoNameToCodeMapping[isoName] {
             self = code
         } else {
@@ -40,7 +40,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from the local or native name for the language
-    public init?(nativeName: String) {
+    init?(nativeName: String) {
         if let code = ISO6392Code.nativeNameToCodeMapping[nativeName] {
             self = code
         } else {
@@ -57,7 +57,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from a Quicktime language code
-    public init?(quicktimeCode: Int) {
+    init?(quicktimeCode: Int) {
         if let code = ISO6392Code.quicktimeCodeMapping[quicktimeCode] {
             self = code
         } else {
@@ -74,7 +74,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
         
     /// Initializes an ISO-639-2 code from an ISO-639-1 code
-    public init?(iso6391Code: String) {
+    init?(iso6391Code: String) {
         if let code = ISO6392Code.iso6391ToCodeMapping[iso6391Code] {
             self = code
         } else {
@@ -1163,7 +1163,7 @@ public enum ISO6392Code: String, CaseIterable {
     case zza
     
     // MARK: Native Name
-    public var nativeName: String {
+    var nativeName: String {
         switch self {
             /// Afar
             case .aar: return "Qafaraf; ’Afar Af; Afaraf; Qafar af"
@@ -1864,7 +1864,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     // MARK: Bibliographic Code
-    public var isoBibliographicCode: String {
+    var isoBibliographicCode: String {
         switch self {
             /// Albanian
             case .sqi: return "alb"
@@ -1911,7 +1911,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     // MARK: ISO Names
-    public var isoName: String {
+    var isoName: String {
         switch self {
             /// Afar
             case .aar: return "Afar"
@@ -2937,7 +2937,7 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
     
-    public var iso639_1_Code: String {
+    var iso639_1_Code: String {
         switch self {
             case .aar: return "aa"
             case .abk: return "ab"
@@ -3125,7 +3125,7 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
     
-    public var quickTimeLanguageCode: Int? {
+    var quickTimeLanguageCode: Int? {
         switch self {
             case .eng: return 0
             case .fra: return 1
@@ -3465,7 +3465,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     /// Converts the 3-character language code string to a UInt16 shorthand value used in Quicktime metadata as specified here: https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap4/qtff4.html#//apple_ref/doc/uid/TP40000939-CH206-27005
-    public func getInt16Code() -> Int16 {
+    func getInt16Code() -> Int16 {
         let isoCodeString = self.rawValue
         
         let intSubtract: Int16 = 0x60

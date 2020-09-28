@@ -6,10 +6,10 @@
 
 import Foundation
 
-public enum LocaleCode: String, CaseIterable {
+enum LocaleCode: String, CaseIterable {
     
     /// Initializes a locale code from a numeric UN code
-    public init?(unCode: Int) {
+    init?(unCode: Int) {
         if let code = LocaleCode.unCodeToCodeMapping?[unCode] {
             self = code
         } else {
@@ -1033,7 +1033,7 @@ public enum LocaleCode: String, CaseIterable {
         }
     }
     
-    public var unCode: Int? {
+    var unCode: Int? {
         switch self {
             /// Afghanistan - AF - AFG - 004
             case .Afghanistan : return 004
