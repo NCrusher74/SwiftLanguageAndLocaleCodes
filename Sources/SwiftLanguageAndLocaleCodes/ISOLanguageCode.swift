@@ -3,7 +3,7 @@
  Copyright ©2020 Nolaine Crusher. All rights reserved.
  */
 
-enum ISO6392Code: String, CaseIterable {
+public enum ISO6392Code: String, CaseIterable {
     /// Initializes an ISO-639-2 code from the UInt16 shorthand for the code used in Apple Quicktime metadata
     init?(fromInt16: Int16) {
         if let code = ISO6392Code.uInt16ToCodeMapping[fromInt16] {

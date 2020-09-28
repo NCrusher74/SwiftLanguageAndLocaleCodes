@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum LocaleCode: String, CaseIterable {
+public enum LocaleCode: String, CaseIterable {
     
     /// Initializes a locale code from a numeric UN code
     init?(unCode: Int) {

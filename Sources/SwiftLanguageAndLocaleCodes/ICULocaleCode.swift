@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum ICULocaleCode: String, CaseIterable {
+public enum ICULocaleCode: String, CaseIterable {
     /// Initializes an ICU Locale Code from its native name
     init?(nativeName: String) {
         if let code = ICULocaleCode.nativeNameToCodeMapping?[nativeName] {
