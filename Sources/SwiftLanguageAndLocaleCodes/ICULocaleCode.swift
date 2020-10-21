@@ -26,7 +26,24 @@ public enum ICULocaleCode: String, CaseIterable {
         }
         return mapping
     }()
-        
+    
+    public init?(code: ISO6392Code) {
+        let string6391 = code.iso639_1_Code
+        let string6392 = code.rawValue
+        var localeCode: ICULocaleCode = .unspecified
+        for locale in ICULocaleCode.allCases {
+            let localeComponents: [String] = locale.rawValue.components(separatedBy: "_")
+            if string6391 == localeComponents.first {
+                localeCode = locale
+            } else if string6392 == localeComponents.first {
+                localeCode = locale
+            } else {
+                localeCode = .unspecified
+            }
+        }
+        self = localeCode
+    }
+    
     case unspecified
     /// Afrikaans - Afrikaans
     case afrikaans = "af"
