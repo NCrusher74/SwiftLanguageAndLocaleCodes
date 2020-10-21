@@ -7,42 +7,6 @@
 import Foundation
 
 public enum ICULocaleCode: String, CaseIterable {
-    /// Initializes an ICU Locale Code from its native name
-    init?(nativeName: String) {
-        if let code = ICULocaleCode.nativeNameToCodeMapping?[nativeName] {
-            self = code
-        } else {
-            return nil
-        }
-    }
-    private static let nativeNameToCodeMapping: [String: ICULocaleCode]? = {
-        var mapping: [String: ICULocaleCode] = [:]
-        for locale in ICULocaleCode.allCases {
-            if let nativeName = locale.nativeName {
-            mapping[nativeName] = locale
-            } else {
-                return nil
-            }
-        }
-        return mapping
-    }()
-        
-    public init?(code: ISO6392Code) {
-        var localeCode: ICULocaleCode = .unspecified
-        for language in ICULocaleCode.languages {
-            if let first = language.rawValue.components(separatedBy: "_").first,
-               first == code.iso639_1_Code {
-                localeCode = language
-            } else if let first = language.rawValue.components(separatedBy: "_").first,
-                      first == code.rawValue {
-                localeCode = language
-            } else {
-                return nil
-            }
-        }
-        self = localeCode
-    }
-    
     case unspecified
     /// Afrikaans - Afrikaans
     case afrikaans = "af"
@@ -1488,11 +1452,220 @@ public enum ICULocaleCode: String, CaseIterable {
     case zulu = "zu"
     /// Zulu (South Africa) - isiZulu (iNingizimu Afrika)
     case zuluSouthAfrica = "zu_ZA"
-    
-    static var languages: [ICULocaleCode] {
-        return [.afrikaans, .aghem, .akan, .albanian, .amharic, .arabic, .armenian, .assamese, .asturian, .asu, .azerbaijani, .bafia, .bambara, .bangla, .basaa, .basque, .belarusian, .bemba, .bena, .bodo, .bosnian, .breton, .bulgarian, .burmese, .cantonese, .catalan, .centralAtlasTamazight, .centralKurdish, .chakma, .chechen, .cherokee, .chiga, .chinese, .colognian, .cornish, .croatian, .czech, .danish, .duala, .dutch, .dzongkha, .embu, .english, .esperanto, .estonian, .ewe, .ewondo, .faroese, .filipino, .finnish, .french, .friulian, .fulah, .galician, .ganda, .georgian, .german, .greek, .gujarati, .gusii, .hausa, .hawaiian, .hebrew, .hindi, .hungarian, .icelandic, .igbo, .inariSami, .indonesian, .irish, .italian, .japanese, .jolaFonyi, .kabuverdianu, .kabyle, .kako, .kalaallisut, .kalenjin, .kamba, .khmer, .kannada, .kashmiri, .kazakh, .kikuyu, .konkani, .korean, .koyraChiini, .kwasio, .kyrgyz, .lakota, .langi, .lao, .latvian, .lingala, .lithuanian, .lowGerman, .lowerSorbian, .lubaKatanga, .luo, .luxembourgish, .luyia, .macedonian, .machame, .makhuwaMeetto, .makonde, .malagasy, .malay, .maltese, .manx, .marathi, .masai, .mazanderani, .meru, .metaʼ, .mongolian, .morisyen, .mundang, .nama, .nepali, .ngiemboon, .ngomba, .northNdebele, .northernLuri, .northernSami, .norwegianBokmål, .norwegianNynorsk, .nuer, .nyankole, .odia, .oromo, .ossetic, .pashto, .persian, .polish, .portuguese, .punjabi, .quechua, .romanian, .romansh, .rombo, .rundi, .russian, .rwa, .sakha, .samburu, .sango, .sangu, .scottishGaelic, .sena, .serbian, .shambala, .shona, .sichuanYi, .sinhala, .slovak, .slovenian, .soga, .somali, .spanish, .standardMoroccanTamazight, .swahili, .swedish, .swissGerman, .tachelhit, .taita, .tajik, .tamil, .tasawaq, .tatar, .telugu, .teso, .thai, .tibetan, .tigrinya, .tongan, .turkish, .ukrainian, .unspecified, .upperSorbian, .urdu, .uyghur, .uzbek, .vai, .vietnamese, .vunjo, .walser, .welsh, .westernFrisian, .wolof, .yangben, .yiddish, .yoruba, .zarma, .zulu]
+
+    public var language: Language {
+        switch self {
+            case .afrikaans: return .afrikaans
+            case .aghem: return .aghem
+            case .akan: return .akan
+            case .albanian: return .albanian
+            case .amharic: return .amharic
+            case .arabic: return .arabic
+            case .armenian: return .armenian
+            case .assamese: return .assamese
+            case .asturian: return .asturian
+            case .asu: return .asu
+            case .azerbaijani: return .azerbaijani
+            case .bafia: return .bafia
+            case .bambara: return .bambara
+            case .bangla: return .bangla
+            case .basaa: return .basaa
+            case .basque: return .basque
+            case .belarusian: return .belarusian
+            case .bemba: return .bemba
+            case .bena: return .bena
+            case .bodo: return .bodo
+            case .bosnian: return .bosnian
+            case .breton: return .breton
+            case .bulgarian: return .bulgarian
+            case .burmese: return .burmese
+            case .cantonese: return .cantonese
+            case .catalan: return .catalan
+            case .centralAtlasTamazight: return .centralAtlasTamazight
+            case .centralKurdish: return .centralKurdish
+            case .chakma: return .chakma
+            case .chechen: return .chechen
+            case .cherokee: return .cherokee
+            case .chiga: return .chiga
+            case .chinese: return .chinese
+            case .colognian: return .colognian
+            case .cornish: return .cornish
+            case .croatian: return .croatian
+            case .czech: return .czech
+            case .danish: return .danish
+            case .duala: return .duala
+            case .dutch: return .dutch
+            case .dzongkha: return .dzongkha
+            case .embu: return .embu
+            case .english: return .english
+            case .esperanto: return .esperanto
+            case .estonian: return .estonian
+            case .ewe: return .ewe
+            case .ewondo: return .ewondo
+            case .faroese: return .faroese
+            case .filipino: return .filipino
+            case .finnish: return .finnish
+            case .french: return .french
+            case .friulian: return .friulian
+            case .fulah: return .fulah
+            case .galician: return .galician
+            case .ganda: return .ganda
+            case .georgian: return .georgian
+            case .german: return .german
+            case .greek: return .greek
+            case .gujarati: return .gujarati
+            case .gusii: return .gusii
+            case .hausa: return .hausa
+            case .hawaiian: return .hawaiian
+            case .hebrew: return .hebrew
+            case .hindi: return .hindi
+            case .hungarian: return .hungarian
+            case .icelandic: return .icelandic
+            case .igbo: return .igbo
+            case .inariSami: return .inariSami
+            case .indonesian: return .indonesian
+            case .irish: return .irish
+            case .italian: return .italian
+            case .japanese: return .japanese
+            case .jolaFonyi: return .jolaFonyi
+            case .kabuverdianu: return .kabuverdianu
+            case .kabyle: return .kabyle
+            case .kako: return .kako
+            case .kalaallisut: return .kalaallisut
+            case .kalenjin: return .kalenjin
+            case .kamba: return .kamba
+            case .khmer: return .khmer
+            case .kannada: return .kannada
+            case .kashmiri: return .kashmiri
+            case .kazakh: return .kazakh
+            case .kikuyu: return .kikuyu
+            case .konkani: return .konkani
+            case .korean: return .korean
+            case .koyraChiini: return .koyraChiini
+            case .kwasio: return .kwasio
+            case .kyrgyz: return .kyrgyz
+            case .lakota: return .lakota
+            case .langi: return .langi
+            case .lao: return .lao
+            case .latvian: return .latvian
+            case .lingala: return .lingala
+            case .lithuanian: return .lithuanian
+            case .lowGerman: return .lowGerman
+            case .lowerSorbian: return .lowerSorbian
+            case .lubaKatanga: return .lubaKatanga
+            case .luo: return .luo
+            case .luxembourgish: return .luxembourgish
+            case .luyia: return .luyia
+            case .macedonian: return .macedonian
+            case .machame: return .machame
+            case .makhuwaMeetto: return .makhuwaMeetto
+            case .makonde: return .makonde
+            case .malagasy: return .malagasy
+            case .malay: return .malay
+            case .maltese: return .maltese
+            case .manx: return .manx
+            case .marathi: return .marathi
+            case .masai: return .masai
+            case .mazanderani: return .mazanderani
+            case .meru: return .meru
+            case .metaʼ: return .metaʼ
+            case .mongolian: return .mongolian
+            case .morisyen: return .morisyen
+            case .mundang: return .mundang
+            case .nama: return .nama
+            case .nepali: return .nepali
+            case .ngiemboon: return .ngiemboon
+            case .ngomba: return .ngomba
+            case .northNdebele: return .northNdebele
+            case .northernLuri: return .northernLuri
+            case .northernSami: return .northernSami
+            case .norwegianBokmål: return .norwegianBokmål
+            case .norwegianNynorsk: return .norwegianNynorsk
+            case .nuer: return .nuer
+            case .nyankole: return .nyankole
+            case .odia: return .odia
+            case .oromo: return .oromo
+            case .ossetic: return .ossetic
+            case .pashto: return .pashto
+            case .persian: return .persian
+            case .polish: return .polish
+            case .portuguese: return .portuguese
+            case .punjabi: return .punjabi
+            case .quechua: return .quechua
+            case .romanian: return .romanian
+            case .romansh: return .romansh
+            case .rombo: return .rombo
+            case .rundi: return .rundi
+            case .russian: return .russian
+            case .rwa: return .rwa
+            case .sakha: return .sakha
+            case .samburu: return .samburu
+            case .sango: return .sango
+            case .sangu: return .sangu
+            case .scottishGaelic: return .scottishGaelic
+            case .sena: return .sena
+            case .serbian: return .serbian
+            case .shambala: return .shambala
+            case .shona: return .shona
+            case .sichuanYi: return .sichuanYi
+            case .sinhala: return .sinhala
+            case .slovak: return .slovak
+            case .slovenian: return .slovenian
+            case .soga: return .soga
+            case .somali: return .somali
+            case .spanish: return .spanish
+            case .standardMoroccanTamazight: return .standardMoroccanTamazight
+            case .swahili: return .swahili
+            case .swedish: return .swedish
+            case .swissGerman: return .swissGerman
+            case .tachelhit: return .tachelhit
+            case .taita: return .taita
+            case .tajik: return .tajik
+            case .tamil: return .tamil
+            case .tasawaq: return .tasawaq
+            case .tatar: return .tatar
+            case .telugu: return .telugu
+            case .teso: return .teso
+            case .thai: return .thai
+            case .tibetan: return .tibetan
+            case .tigrinya: return .tigrinya
+            case .tongan: return .tongan
+            case .turkish: return .turkish
+            case .ukrainian: return .ukrainian
+            case .unspecified: return .unspecified
+            case .upperSorbian: return .upperSorbian
+            case .urdu: return .urdu
+            case .uyghur: return .uyghur
+            case .uzbek: return .uzbek
+            case .vai: return .vai
+            case .vietnamese: return .vietnamese
+            case .vunjo: return .vunjo
+            case .walser: return .walser
+            case .welsh: return .welsh
+            case .westernFrisian: return .westernFrisian
+            case .wolof: return .wolof
+            case .yangben: return .yangben
+            case .yiddish: return .yiddish
+            case .yoruba: return .yoruba
+            case .zarma: return .zarma
+            case .zulu: return .zulu
+            default:
+                var language: Language = .unspecified
+                for code in ICULocaleCode.allCases {
+                    if let languageString = code.rawValue.components(separatedBy: "_").first, languageString.count == 2 {
+                        if let isoCode = ISO6392Code(iso6391Code: languageString) {
+                            language = isoCode.language
+                        }
+                    } else if let languageString = code.rawValue.components(separatedBy: "_").first, languageString.count == 3 {
+                        if let isoCode = ISO6392Code(rawValue: languageString) {
+                            language = isoCode.language
+                        }
+                    }
+                }
+                return language
+        }
     }
-    
+
     var nativeName: String? {
         switch self {
             case .unspecified: return nil
@@ -2943,4 +3116,26 @@ public enum ICULocaleCode: String, CaseIterable {
             default: break
         }
     }
+    
+    /// Initializes an ICU Locale Code from its native name
+    init?(nativeName: String) {
+        if let code = ICULocaleCode.nativeNameToCodeMapping?[nativeName] {
+            self = code
+        } else {
+            return nil
+        }
+    }
+    private static let nativeNameToCodeMapping: [String: ICULocaleCode]? = {
+        var mapping: [String: ICULocaleCode] = [:]
+        for locale in ICULocaleCode.allCases {
+            if let nativeName = locale.nativeName {
+                mapping[nativeName] = locale
+            } else {
+                return nil
+            }
+        }
+        return mapping
+    }()
+    
+
 }

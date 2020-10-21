@@ -3199,7 +3199,6 @@ public enum ISO6392Code: String, CaseIterable {
             case .kaz: return 48
             case .aze: return 49
             case .hye: return 51
-            case .und: return 32767
             case .kat: return 52
             case .kir: return 54
             case .tgk: return 55
@@ -3259,6 +3258,7 @@ public enum ISO6392Code: String, CaseIterable {
             case .gla: return 144
             case .glv: return 145
             case .tog: return 147
+            case .und: return 32767
             default: return nil
         }
     }
@@ -3483,6 +3483,206 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
     
+    public var language: Language {
+        switch self {
+            case .afr: return .afrikaans
+            case .agq: return .aghem
+            case .aka: return .akan
+            case .sqi: return .albanian
+            case .amh: return .amharic
+            case .ara: return .arabic
+            case .hye: return .armenian
+            case .asm: return .assamese
+            case .ast: return .asturian
+            case .asa: return .asu
+            case .aze: return .azerbaijani
+            case .ksf: return .bafia
+            case .bam: return .bambara
+            case .ben: return .bangla
+            case .bas: return .basaa
+            case .eus: return .basque
+            case .bel: return .belarusian
+            case .bem: return .bemba
+            case .bez: return .bena
+            case .brx: return .bodo
+            case .bos: return .bosnian
+            case .bre: return .breton
+            case .bul: return .bulgarian
+            case .mya: return .burmese
+            case .yue: return .cantonese
+            case .cat: return .catalan
+            case .tzm: return .centralAtlasTamazight
+            case .kur: return .centralKurdish
+            case .ccp: return .chakma
+            case .che: return .chechen
+            case .chr: return .cherokee
+            case .cgg: return .chiga
+            case .zho: return .chinese
+            case .ksh: return .colognian
+            case .cor: return .cornish
+            case .hrv: return .croatian
+            case .ces: return .czech
+            case .dan: return .danish
+            case .dua: return .duala
+            case .nld: return .dutch
+            case .dzo: return .dzongkha
+            case .ebu: return .embu
+            case .eng: return .english
+            case .epo: return .esperanto
+            case .est: return .estonian
+            case .ewe: return .ewe
+            case .ewo: return .ewondo
+            case .fao: return .faroese
+            case .fil: return .filipino
+            case .fin: return .finnish
+            case .fra: return .french
+            case .fur: return .friulian
+            case .ful: return .fulah
+            case .glg: return .galician
+            case .lug: return .ganda
+            case .kat: return .georgian
+            case .deu: return .german
+            case .ell: return .greek
+            case .guj: return .gujarati
+            case .guz: return .gusii
+            case .hau: return .hausa
+            case .haw: return .hawaiian
+            case .heb: return .hebrew
+            case .hin: return .hindi
+            case .hun: return .hungarian
+            case .isl: return .icelandic
+            case .ibo: return .igbo
+            case .smn: return .inariSami
+            case .ind: return .indonesian
+            case .gle: return .irish
+            case .ita: return .italian
+            case .jpn: return .japanese
+            case .dyo: return .jolaFonyi
+            case .kea: return .kabuverdianu
+            case .kab: return .kabyle
+            case .kkj: return .kako
+            case .kal: return .kalaallisut
+            case .kln: return .kalenjin
+            case .kam: return .kamba
+            case .khm: return .khmer
+            case .kan: return .kannada
+            case .kas: return .kashmiri
+            case .kaz: return .kazakh
+            case .kik: return .kikuyu
+            case .kok: return .konkani
+            case .kor: return .korean
+            case .khq: return .koyraChiini
+            case .nmg: return .kwasio
+            case .kir: return .kyrgyz
+            case .lkt: return .lakota
+            case .lag: return .langi
+            case .lao: return .lao
+            case .lav: return .latvian
+            case .lin: return .lingala
+            case .lit: return .lithuanian
+            case .nds: return .lowGerman
+            case .dsb: return .lowerSorbian
+            case .lub: return .lubaKatanga
+            case .luo: return .luo
+            case .ltz: return .luxembourgish
+            case .luy: return .luyia
+            case .mkd: return .macedonian
+            case .jmc: return .machame
+            case .mgh: return .makhuwaMeetto
+            case .kde: return .makonde
+            case .mlg: return .malagasy
+            case .msa: return .malay
+            case .mlt: return .maltese
+            case .glv: return .manx
+            case .mar: return .marathi
+            case .mas: return .masai
+            case .mzn: return .mazanderani
+            case .mer: return .meru
+            case .mgo: return .metaʼ
+            case .mon: return .mongolian
+            case .mfe: return .morisyen
+            case .mua: return .mundang
+            case .naq: return .nama
+            case .nep: return .nepali
+            case .nnh: return .ngiemboon
+            case .jgo: return .ngomba
+            case .nbl: return .northNdebele
+            case .lrc: return .northernLuri
+            case .sme: return .northernSami
+            case .nob: return .norwegianBokmål
+            case .nno: return .norwegianNynorsk
+            case .nus: return .nuer
+            case .nyn: return .nyankole
+            case .ori: return .odia
+            case .orm: return .oromo
+            case .oss: return .ossetic
+            case .pus: return .pashto
+            case .fas: return .persian
+            case .pol: return .polish
+            case .por: return .portuguese
+            case .pan: return .punjabi
+            case .que: return .quechua
+            case .rom: return .romanian
+            case .roh: return .romansh
+            case .rof: return .rombo
+            case .run: return .rundi
+            case .rus: return .russian
+            case .rwk: return .rwa
+            case .sah: return .sakha
+            case .saq: return .samburu
+            case .sag: return .sango
+            case .sbp: return .sangu
+            case .gla: return .scottishGaelic
+            case .seh: return .sena
+            case .srp: return .serbian
+            case .ksb: return .shambala
+            case .sna: return .shona
+            case .iii: return .sichuanYi
+            case .sin: return .sinhala
+            case .slk: return .slovak
+            case .slv: return .slovenian
+            case .xog: return .soga
+            case .som: return .somali
+            case .spa: return .spanish
+            case .zgh: return .standardMoroccanTamazight
+            case .swa: return .swahili
+            case .swe: return .swedish
+            case .gsw: return .swissGerman
+            case .shi: return .tachelhit
+            case .dav: return .taita
+            case .tgk: return .tajik
+            case .tam: return .tamil
+            case .twq: return .tasawaq
+            case .tat: return .tatar
+            case .tel: return .telugu
+            case .teo: return .teso
+            case .tha: return .thai
+            case .bod: return .tibetan
+            case .tir: return .tigrinya
+            case .ton: return .tongan
+            case .tur: return .turkish
+            case .ukr: return .ukrainian
+            case .und: return .unspecified
+            case .hsb: return .upperSorbian
+            case .urd: return .urdu
+            case .uig: return .uyghur
+            case .uzb: return .uzbek
+            case .vai: return .vai
+            case .vie: return .vietnamese
+            case .vun: return .vunjo
+            case .wae: return .walser
+            case .cym: return .welsh
+            case .fry: return .westernFrisian
+            case .wol: return .wolof
+            case .yav: return .yangben
+            case .yid: return .yiddish
+            case .yor: return .yoruba
+            case .dje: return .zarma
+            case .zul: return .zulu
+            default: return .unspecified
+        }
+    }
+
     /// Converts the 3-character language code string to a UInt16 shorthand value used in Quicktime metadata as specified here: https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap4/qtff4.html#//apple_ref/doc/uid/TP40000939-CH206-27005
     public func getInt16Code() -> Int16 {
         let isoCodeString = self.rawValue

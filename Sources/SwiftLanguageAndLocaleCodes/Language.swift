@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum Language {
+public enum Language {
     case afrikaans
     case aghem
     case akan
@@ -202,7 +202,7 @@ enum Language {
     case zarma
     case zulu
     
-    var iso6392Code: ISO6392Code {
+    public var iso6392Code: ISO6392Code {
         switch self {
             case .afrikaans: return .afr
             case .aghem: return .agq
@@ -401,7 +401,7 @@ enum Language {
         }
     }
     
-    var localeCode: ICULocaleCode {
+    public var localeCode: ICULocaleCode {
         switch self {
             case .afrikaans: return .afrikaans
             case .aghem: return .aghem
