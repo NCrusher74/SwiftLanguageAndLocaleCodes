@@ -17,28 +17,27 @@ public enum ICULocaleCode: String, CaseIterable {
     }
     private static let nativeNameToCodeMapping: [String: ICULocaleCode]? = {
         var mapping: [String: ICULocaleCode] = [:]
-        for code in ICULocaleCode.allCases {
-            if let nativeName = code.nativeName {
-            mapping[nativeName] = code
+        for locale in ICULocaleCode.allCases {
+            if let nativeName = locale.nativeName {
+            mapping[nativeName] = locale
             } else {
                 return nil
             }
         }
         return mapping
     }()
-    
+        
     public init?(code: ISO6392Code) {
-        let string6391 = code.iso639_1_Code
-        let string6392 = code.rawValue
         var localeCode: ICULocaleCode = .unspecified
-        for locale in ICULocaleCode.allCases {
-            let localeComponents: [String] = locale.rawValue.components(separatedBy: "_")
-            if string6391 == localeComponents.first {
-                localeCode = locale
-            } else if string6392 == localeComponents.first {
-                localeCode = locale
+        for language in ICULocaleCode.languages {
+            if let first = language.rawValue.components(separatedBy: "_").first,
+               first == code.iso639_1_Code {
+                localeCode = language
+            } else if let first = language.rawValue.components(separatedBy: "_").first,
+                      first == code.rawValue {
+                localeCode = language
             } else {
-                localeCode = .unspecified
+                return nil
             }
         }
         self = localeCode
@@ -1489,6 +1488,10 @@ public enum ICULocaleCode: String, CaseIterable {
     case zulu = "zu"
     /// Zulu (South Africa) - isiZulu (iNingizimu Afrika)
     case zuluSouthAfrica = "zu_ZA"
+    
+    static var languages: [ICULocaleCode] {
+        return [.afrikaans, .aghem, .akan, .albanian, .amharic, .arabic, .armenian, .assamese, .asturian, .asu, .azerbaijani, .bafia, .bambara, .bangla, .basaa, .basque, .belarusian, .bemba, .bena, .bodo, .bosnian, .breton, .bulgarian, .burmese, .cantonese, .catalan, .centralAtlasTamazight, .centralKurdish, .chakma, .chechen, .cherokee, .chiga, .chinese, .colognian, .cornish, .croatian, .czech, .danish, .duala, .dutch, .dzongkha, .embu, .english, .esperanto, .estonian, .ewe, .ewondo, .faroese, .filipino, .finnish, .french, .friulian, .fulah, .galician, .ganda, .georgian, .german, .greek, .gujarati, .gusii, .hausa, .hawaiian, .hebrew, .hindi, .hungarian, .icelandic, .igbo, .inariSami, .indonesian, .irish, .italian, .japanese, .jolaFonyi, .kabuverdianu, .kabyle, .kako, .kalaallisut, .kalenjin, .kamba, .khmer, .kannada, .kashmiri, .kazakh, .kikuyu, .konkani, .korean, .koyraChiini, .kwasio, .kyrgyz, .lakota, .langi, .lao, .latvian, .lingala, .lithuanian, .lowGerman, .lowerSorbian, .lubaKatanga, .luo, .luxembourgish, .luyia, .macedonian, .machame, .makhuwaMeetto, .makonde, .malagasy, .malay, .maltese, .manx, .marathi, .masai, .mazanderani, .meru, .metaʼ, .mongolian, .morisyen, .mundang, .nama, .nepali, .ngiemboon, .ngomba, .northNdebele, .northernLuri, .northernSami, .norwegianBokmål, .norwegianNynorsk, .nuer, .nyankole, .odia, .oromo, .ossetic, .pashto, .persian, .polish, .portuguese, .punjabi, .quechua, .romanian, .romansh, .rombo, .rundi, .russian, .rwa, .sakha, .samburu, .sango, .sangu, .scottishGaelic, .sena, .serbian, .shambala, .shona, .sichuanYi, .sinhala, .slovak, .slovenian, .soga, .somali, .spanish, .standardMoroccanTamazight, .swahili, .swedish, .swissGerman, .tachelhit, .taita, .tajik, .tamil, .tasawaq, .tatar, .telugu, .teso, .thai, .tibetan, .tigrinya, .tongan, .turkish, .ukrainian, .unspecified, .upperSorbian, .urdu, .uyghur, .uzbek, .vai, .vietnamese, .vunjo, .walser, .welsh, .westernFrisian, .wolof, .yangben, .yiddish, .yoruba, .zarma, .zulu]
+    }
     
     var nativeName: String? {
         switch self {
