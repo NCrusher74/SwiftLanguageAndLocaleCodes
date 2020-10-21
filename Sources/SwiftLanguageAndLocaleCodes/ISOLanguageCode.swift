@@ -4,6 +4,22 @@
  */
 
 public enum ISO6392Code: String, CaseIterable {
+    public init?(localeCode: ICULocaleCode) {
+        let language = localeCode.rawValue
+        let langComponents: [String] = language.components(separatedBy: "_")
+        if let langString: String = langComponents.first {
+            if let language6392 = ISO6392Code(iso6391Code: langString) {
+                self = language6392
+            } else if let language6392 = ISO6392Code(rawValue: langString) {
+                self = language6392
+            } else {
+                self = .und
+            }
+        } else {
+            self = .und
+        }
+    }
+    
     /// Initializes an ISO-639-2 code from the UInt16 shorthand for the code used in Apple Quicktime metadata
     public init?(fromInt16: Int16) {
         if let code = ISO6392Code.uInt16ToCodeMapping[fromInt16] {
