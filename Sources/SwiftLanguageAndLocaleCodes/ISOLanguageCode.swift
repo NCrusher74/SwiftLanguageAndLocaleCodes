@@ -261,6 +261,8 @@ public enum ISO6392Code: String, CaseIterable {
     case cat
     /// Caucasian languages
     case cau
+    /// Chakma
+    case ccp
     /// Cebuano
     case ceb
     /// Celtic languages
@@ -2905,7 +2907,7 @@ public enum ISO6392Code: String, CaseIterable {
             case .bez: return "Bena"
             case .brx: return "Bodo"
             case .cgg: return "Chiga"
-            case .dav: return "Taita"
+            case .dav: return "aja"
             case .dje: return "Zarma"
             case .dyo: return "Jola-Fonyi"
             case .ebu: return "Embu"
@@ -2950,6 +2952,7 @@ public enum ISO6392Code: String, CaseIterable {
             case .yav: return "Yangben"
             case .yue: return "Cantonese"
             case .agq: return "Aghem"
+            case .ccp: return "Chakma"
         }
     }
     
