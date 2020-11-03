@@ -1929,7 +1929,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     // MARK: ISO Names
-    var isoName: String {
+    public var isoName: String {
         switch self {
             /// Afar
             case .aar: return "Afar"

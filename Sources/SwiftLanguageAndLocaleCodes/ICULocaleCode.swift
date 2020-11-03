@@ -1666,7 +1666,7 @@ public enum ICULocaleCode: String, CaseIterable {
         }
     }
 
-    var nativeName: String? {
+    public var nativeName: String? {
         switch self {
             case .unspecified: return nil
             /// Afrikaans - Afrikaans
