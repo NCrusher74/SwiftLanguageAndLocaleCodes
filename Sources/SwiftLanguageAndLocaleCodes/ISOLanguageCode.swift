@@ -39,7 +39,7 @@ public enum ISO6392Code: String, CaseIterable {
     }()
     
     /// Initializes an ISO-639-2 code from the ISO-recognized language name
-    init?(isoName: String) {
+    public init?(isoName: String) {
         if let code = ISO6392Code.isoNameToCodeMapping[isoName] {
             self = code
         } else {
