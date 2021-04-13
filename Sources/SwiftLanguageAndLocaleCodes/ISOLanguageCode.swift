@@ -21,7 +21,7 @@ public enum ISO6392Code: String, CaseIterable {
     }
     
     /// Initializes an ISO-639-2 code from the UInt16 shorthand for the code used in Apple Quicktime metadata
-    public init?(fromInt16: Int16) {
+    public init?(fromInt16: UInt16) {
         if let code = ISO6392Code.uInt16ToCodeMapping[fromInt16] {
             self = code
         } else {
@@ -29,11 +29,11 @@ public enum ISO6392Code: String, CaseIterable {
         }
     }
 
-    private static let uInt16ToCodeMapping: [Int16: ISO6392Code] = {
-        var mapping: [Int16: ISO6392Code] = [:]
+    private static let uInt16ToCodeMapping: [UInt16: ISO6392Code] = {
+        var mapping: [UInt16: ISO6392Code] = [:]
         for code in ISO6392Code.allCases {
-            let int16 = code.getInt16Code()
-            mapping[int16] = code
+            let uInt16 = code.getUInt16Code()
+            mapping[uInt16] = code
         }
         return mapping
     }()
@@ -3684,29 +3684,29 @@ public enum ISO6392Code: String, CaseIterable {
     }
 
     /// Converts the 3-character language code string to a UInt16 shorthand value used in Quicktime metadata as specified here: https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap4/qtff4.html#//apple_ref/doc/uid/TP40000939-CH206-27005
-    public func getInt16Code() -> Int16 {
+    public func getUInt16Code() -> UInt16 {
         let isoCodeString = self.rawValue
         
-        let intSubtract: Int16 = 0x60
-        var int16Array: [Int16] = []
+        let intSubtract: UInt16 = 0x60
+        var array: [UInt16] = []
         for letter in isoCodeString {
-            let int16Subtracted = letter.int16 - intSubtract
-            int16Array.append(int16Subtracted)
+            let subtracted = letter.uInt16 - intSubtract
+            array.append(subtracted)
         }
         
-        let int400: Int16 = 0x400
-        let int20: Int16 = 0x20
+        let int400: UInt16 = 0x400
+        let int20: UInt16 = 0x20
         
         var index: Int = 0
-        var shifted: Int16? = nil
-        var shiftedArray: [Int16] = []
-        while index < int16Array.endIndex {
+        var shifted: UInt16? = nil
+        var shiftedArray: [UInt16] = []
+        while index < array.endIndex {
             if index == 0 {
-                shifted = int16Array[index] * int400
+                shifted = array[index] * int400
             } else if index == 1 {
-                shifted = int16Array[index] * int20
+                shifted = array[index] * int20
             } else {
-                shifted = int16Array[index]
+                shifted = array[index]
             }
             shiftedArray.append(shifted ?? 0x0000)
             index += 1
@@ -3718,21 +3718,21 @@ public enum ISO6392Code: String, CaseIterable {
 
 // Convenience extensions used in getUInt16Code()
 extension Character {
-    var int8: Int8 {
-        return String(self).utf8.map{Int8($0)}[0]
+    var uInt8: UInt8 {
+        return String(self).utf8.map{UInt8($0)}[0]
     }
     
-    var int16: Int16 {
-        return String(self).utf16.map{Int16($0)}[0]
+    var uInt16: UInt16 {
+        return String(self).utf16.map{UInt16($0)}[0]
     }
 }
 
 extension Sequence where Element == Character {
-    var int8Array: [Int8] {
-        return String(self).utf8.map{Int8($0)}
+    var uInt8Array: [UInt8] {
+        return String(self).utf8.map{UInt8($0)}
     }
     
-    var int16Array: [Int16] {
-        return String(self).utf16.map{Int16($0)}
+    var uInt16Array: [UInt16] {
+        return String(self).utf16.map{UInt16($0)}
     }
 }
